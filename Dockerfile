@@ -4,8 +4,8 @@ ARG TIMESTAMP
 
 LABEL org.opencontainers.image.authors=james@inpulsetech.io
 LABEL org.opencontainers.image.created=${TIMESTAMP}
-LABEL org.opencontainers.image.url=https://github.com/jwbennet/daily-summary-generator
-LABEL org.opencontainers.image.source=https://github.com/jwbennet/daily-summary-generator
+LABEL org.opencontainers.image.url=https://github.com/jwbennet/homelab-daily-summary-generator
+LABEL org.opencontainers.image.source=https://github.com/jwbennet/homelab-daily-summary-generator
 LABEL org.opencontainers.image.vendor="Inpulse Technologies, LLC"
 
 RUN mkdir -p /usr/src/app/config && \
