@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daily-summary-generator
+spec:
+  schedule: "50 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: daily-summary-generator
+            image: jwbennet/daily-summary-generator:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - /home/app/.local/bin/pipenv
+            - run
+            - update
+            volumeMounts:
+            - name: gcp-creds
+              mountPath: "/usr/src/app/config"
+              readOnly: true
+            envFrom:
+            - secretRef:
+                name: daily-summary-generator-config
+          volumes:
+          - name: gcp-creds
+            secret:
+              secretName: daily-summary-generator-gcp-creds
+          restartPolicy: OnFailure
